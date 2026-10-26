@@ -21,7 +21,7 @@ public class Buffer_N {
         return aDevolver;
     }
 
-    public synchronized void producir(Object dato) {
+    public synchronized void producir(Object dato) throws InterruptedException {
         while(buffer[next()] != null) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
             wait();
         }

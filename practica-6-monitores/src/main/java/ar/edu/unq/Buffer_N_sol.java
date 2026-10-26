@@ -12,7 +12,7 @@ public class Buffer_N_sol {
     }
 
     public synchronized Object consumir() {
-        while(puedeConsumir()) {
+        while(!puedeConsumir()) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -27,7 +27,7 @@ public class Buffer_N_sol {
     }
 
     public synchronized void producir(Object dato) {
-        while(puedeProducir()) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
+        while(!puedeProducir()) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -40,11 +40,11 @@ public class Buffer_N_sol {
     }
 
     private boolean puedeConsumir() {
-        return primeraParaConsumir == proximaLibre;
+        return primeraParaConsumir != proximaLibre;
     }
 
     private boolean puedeProducir() {
-        return next(proximaLibre) == primeraParaConsumir;
+        return next(proximaLibre) != primeraParaConsumir;
     }
 
     private int next(int indice) {
