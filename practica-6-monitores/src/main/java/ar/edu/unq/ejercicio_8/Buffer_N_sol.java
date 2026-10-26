@@ -1,4 +1,4 @@
-package ar.edu.unq;
+package ar.edu.unq.ejercicio_8;
 
 //Solución de las diapos
 public class Buffer_N_sol {

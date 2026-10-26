@@ -1,4 +1,4 @@
-package ar.edu.unq;
+package ar.edu.unq.ejercicio_8;
 
 public class Buffer_uno {
     Object buffer = null;

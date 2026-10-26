@@ -1,5 +1,6 @@
-package ar.edu.unq;
+package ar.edu.unq.ejercicio_8;
 
+//La solución menos bonita que se me ocurrió antes de ver la solución de las diapos.
 public class Buffer_N {
     private Object[] buffer;
     private int primeraParaConsumir = 0;
