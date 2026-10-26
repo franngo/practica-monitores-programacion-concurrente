@@ -11,7 +11,7 @@ public class Buffer_N {
     }
 
     public synchronized Object consumir() {
-        while(primeraParaConsumir != proximaLibre) {
+        while(primeraParaConsumir == proximaLibre) {
             wait();
         }
         Object aDevolver = buffer[primeraParaConsumir];
