@@ -3,7 +3,7 @@ package ar.edu.unq;
 public class Buffer_uno {
     Object buffer = null;
 
-    public synchronized Object consumir() {
+    public synchronized Object consumir() throws InterruptedException {
         while(buffer == null) {
             wait();
         }
@@ -13,7 +13,7 @@ public class Buffer_uno {
         return aDevolver;
     }
 
-    public synchronized void producir(Object dato) {
+    public synchronized void producir(Object dato) throws InterruptedException {
         while(buffer != null) {
             wait();
         }

@@ -7,7 +7,7 @@ public class Semaforo {
         this.permisos = permisos;
     }
 
-    public synchronized void acquire() {
+    public synchronized void acquire() throws InterruptedException {
         while(permisos < 1) {
             wait();
         }

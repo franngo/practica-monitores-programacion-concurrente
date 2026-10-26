@@ -11,7 +11,7 @@ public class Buffer_N_sol {
         buffer = new Object[n+1];
     }
 
-    public synchronized Object consumir() {
+    public synchronized Object consumir() throws InterruptedException {
         while(primeraParaConsumir == proximaLibre) {
             wait();
         }
@@ -22,7 +22,7 @@ public class Buffer_N_sol {
         return aDevolver;
     }
 
-    public synchronized void producir(Object dato) {
+    public synchronized void producir(Object dato) throws InterruptedException {
         while(next(proximaLibre) == primeraParaConsumir) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
             wait();
         }

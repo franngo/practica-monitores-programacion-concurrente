@@ -10,7 +10,7 @@ public class Consumidor extends Thread {
     public void consumir() {
         Object x;
         while(true) {
-            x = buffer.consumir();
+            //x = buffer.consumir();
             //consumirObj(x);
         }
     }

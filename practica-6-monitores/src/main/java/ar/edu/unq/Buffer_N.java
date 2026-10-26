@@ -10,7 +10,7 @@ public class Buffer_N {
         buffer = new Object[n+1];
     }
 
-    public synchronized Object consumir() {
+    public synchronized Object consumir() throws InterruptedException {
         while(primeraParaConsumir == proximaLibre) {
             wait();
         }
