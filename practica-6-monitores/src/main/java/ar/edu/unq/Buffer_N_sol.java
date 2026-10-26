@@ -11,9 +11,13 @@ public class Buffer_N_sol {
         buffer = new Object[n+1];
     }
 
-    public synchronized Object consumir() throws InterruptedException {
-        while(primeraParaConsumir == proximaLibre) {
-            wait();
+    public synchronized Object consumir() {
+        while(puedeConsumir()) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         Object aDevolver = buffer[primeraParaConsumir];
         //buffer[primeraParaConsumir] = null;
@@ -22,13 +26,25 @@ public class Buffer_N_sol {
         return aDevolver;
     }
 
-    public synchronized void producir(Object dato) throws InterruptedException {
-        while(next(proximaLibre) == primeraParaConsumir) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
-            wait();
+    public synchronized void producir(Object dato) {
+        while(puedeProducir()) { //si solo queda libre el slot extra, entonces significa que toddo el buffer está ocupado
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         buffer[proximaLibre] = dato;
         proximaLibre = next(proximaLibre);
         notifyAll();
+    }
+
+    private boolean puedeConsumir() {
+        return primeraParaConsumir == proximaLibre;
+    }
+
+    private boolean puedeProducir() {
+        return next(proximaLibre) == primeraParaConsumir;
     }
 
     private int next(int indice) {
