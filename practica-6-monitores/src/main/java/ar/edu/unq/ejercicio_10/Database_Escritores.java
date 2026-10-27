@@ -41,7 +41,7 @@ public class Database_Escritores {
     public synchronized void finLectura () {
         lectores--;
         if(!seEstaLeyendo()) {
-            notifyAll(); //porque si hay algún escritor esperando, esto puede causar que también haya lectores esperando debido a la waiting condition. Acá queremos despertar escritores.
+            notifyAll(); //porque si hay algún escritor esperando, esto puede causar que también haya lectores esperando debido a la waiting condition. Acá queremos despertar escritores, pero ante la posibilidad de que hayan tanto escritores como lectores, despertamos a todos.
         }
     }
 
