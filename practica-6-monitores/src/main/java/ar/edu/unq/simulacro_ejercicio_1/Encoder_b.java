@@ -3,15 +3,14 @@ package ar.edu.unq.simulacro_ejercicio_1;
 import java.util.ArrayList;
 import java.util.List;
 
-//Encoder inciso a
-public class Encoder {
+//Encoder inciso b
+public class Encoder_b {
     private ArrayList<Object> frames = new ArrayList<Object>();
-    private int p; //la cantidad constante de cuadros que se devuelven en getPack
+    //private int p; //YA NO HAY cantidad constante de cuadros que se devuelven en getPack (ahora es parametrizable)
     private int m; //el máximo de cuadros almacenable en frames
 
-    //P debe ser <= M
-    public Encoder(int p, int m) {
-        this.p = p;
+    public Encoder_b(int m) {
+        //this.p = p;
         this.m = m;
     }
 
@@ -24,13 +23,11 @@ public class Encoder {
             }
         }
         frames.add(frame);
-        if(canGet()) {
-            notify(); //pues no tiene sentido despertar a un consumidor si todavía no hay p frames.
-        }
+        notifyAll(); //como no sabés cuántos frames necesita cada consumidor, tenés que despertar en toddo caso (y despertás a TODOS, porque podrías despertar justo a uno que no puede obtener tantos frames como necesita y que se vuelve a dormir)
     }
 
-    public synchronized List<Object> getPack() {
-        while(!canGet()) {
+    public synchronized List<Object> getPack(int p) {
+        while(!canGet(p)) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -49,7 +46,7 @@ public class Encoder {
         return frames.size() + 1 <= m;
     }
 
-    private boolean canGet() {
+    private boolean canGet(int p) {
         return frames.size() >= p;
     }
 }
