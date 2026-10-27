@@ -26,9 +26,9 @@ public class Database_Lectores {
     }
 
     public synchronized void inicioLectura () {
+        lectoresEsperando++; //Se hace una vez ANTES del while, porque, si se hace antes del wait(), podría darse que obtenga el lock, nuevamente se cumpla seEstaEscribiendo e incremente lectoresEsperando otra vez más, inflando así la variable de forma incorrecta.
         while(seEstaEscribiendo) {
             try {
-                lectoresEsperando++;
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
