@@ -1,5 +1,6 @@
 package ar.edu.unq.ejercicio_6;
 
+//SOLUCIÓN DEL INCISO A
 public class Red_Energia {
     private int productores = 0;
     private int consumidores = 0;
