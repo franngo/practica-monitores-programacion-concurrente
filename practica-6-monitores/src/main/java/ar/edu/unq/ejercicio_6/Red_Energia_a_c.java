@@ -19,12 +19,12 @@ public class Red_Energia_a_c {
 
     public synchronized void FinConsumo() {
         consumidores--;
-        notifyAll(); //Ahora sí notifyAll, pues entre los productores y los consumidores dormidos, nosotros queremos despertar a los productores, ya que los consumidores no podrán entrar debido a la nueva condición. Si solo hicieramos notify y se le diera el lock a un cosnumidor, este se dormiría y se pararía el programa.
+        notifyAll(); //Ahora sí notifyAll, pues entre los productores y los consumidores dormidos, nosotros queremos despertar a los productores, ya que los consumidores no podrán entrar debido a la nueva condición. Si solo hicieramos notify y se le diera el lock a un consumidor, este se dormiría y el proceso del monitor quedaría parado, aunque haya productores listos para continuar su ejecución en el wait set.
     }
 
     public synchronized void inicioProduccion() {
         productores++;
-        notifyAll(); //Ahora sí notifyAll, pues entre los productores y los consumidores dormidos, nosotros queremos despertar a los productores, ya que los consumidores no podrán entrar debido a la nueva condición. Si solo hicieramos notify y se le diera el lock a un cosnumidor, este se dormiría y se pararía el programa.
+        notifyAll(); //Ahora sí notifyAll, pues entre los productores y los consumidores dormidos, nosotros queremos despertar a los productores, ya que los consumidores no podrán entrar debido a la nueva condición. Si solo hicieramos notify y se le diera el lock a un consumidor, este se dormiría y el proceso del monitor quedaría parado, aunque haya productores listos para continuar su ejecución en el wait set.
     }
 
     public synchronized void finProduccion() {

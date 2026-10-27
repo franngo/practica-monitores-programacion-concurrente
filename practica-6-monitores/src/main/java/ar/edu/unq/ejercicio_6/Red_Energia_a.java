@@ -1,7 +1,7 @@
 package ar.edu.unq.ejercicio_6;
 
 //SOLUCIÓN DEL INCISO A
-public class Red_Energia {
+public class Red_Energia_a {
     private int productores = 0;
     private int consumidores = 0;
 
@@ -18,12 +18,12 @@ public class Red_Energia {
 
     public synchronized void FinConsumo() {
         consumidores--;
-        notify(); //no notifyAll, porque puede haber bloqueados tanto consumidores como productores, pero ambos esperan lo mismo (un consumidor menos o un productor más)
+        notify(); //no notifyAll, porque puede haber bloqueados tanto consumidores (esperando a entrar) como productores (esperando a salir), pero ambos esperan lo mismo (un consumidor menos o un productor más)
     }
 
     public synchronized void inicioProduccion() {
         productores++;
-        notify(); //no notifyAll, porque puede haber bloqueados tanto consumidores como productores, pero ambos esperan lo mismo (un consumidor menos o un productor más)
+        notify(); //no notifyAll, porque puede haber bloqueados tanto consumidores (esperando a entrar) como productores (esperando a salir), pero ambos esperan lo mismo (un consumidor menos o un productor más)
     }
 
     public synchronized void finProduccion() {
