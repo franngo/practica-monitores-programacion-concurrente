@@ -9,12 +9,13 @@ public class Encoder {
     private int p; //la cantidad constante de cuadros que se devuelven en getPack
     private int m; //el máximo de cuadros almacenable en frames
 
+    //P debe ser <= M
     public Encoder(int p, int m) {
         this.p = p;
         this.m = m;
     }
 
-    public void putRawFrame(Object frame) {
+    public synchronized void putRawFrame(Object frame) {
         while(!canPut()) {
             try {
                 wait();
@@ -23,10 +24,12 @@ public class Encoder {
             }
         }
         frames.add(frame);
-        notifyAll();
+        if(canGet()) {
+            notify(); //pues no tiene sentido despertar a un consumidor si todavía no hay p frames.
+        }
     }
 
-    public List<Object> getPack() {
+    public synchronized List<Object> getPack() {
         while(!canGet()) {
             try {
                 wait();
@@ -38,7 +41,7 @@ public class Encoder {
         for(int i=0; i<p; i++) {
             aDevolver.add(frames.remove(0)); //con remove(0) saco el primero de la lista y lo retorno
         }
-        notifyAll();
+        notify(); //porque se nos dice que UN thread actua como productor, y sabemos que en este momento solo va a estar en el wait set el único productor.
         return aDevolver;
     }
 
