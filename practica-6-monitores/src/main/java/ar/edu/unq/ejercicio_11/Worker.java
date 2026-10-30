@@ -12,14 +12,14 @@ public class Worker extends Thread {
     @Override
     public void run() {
         Runnable task;
-        while(true) {
-            task = (Runnable) buffer.consumir();
-            try {
+        try {
+            while(true) {
+                task = (Runnable) buffer.consumir();
                 task.run(); //ejecutar la task en cuestión
-            } catch(PoisonException error) {
-                //Cuando el hilo tiene que morir, simplemente muere. No es necesario que avise su muerte ni nada parecido.
-                System.out.println("Soy un worker que acaba de fallecer.");
             }
+        } catch(PoisonException error) {
+            //Cuando el hilo tiene que morir, simplemente muere. No es necesario que avise su muerte ni nada parecido.
+            System.out.println("Soy un worker que acaba de fallecer.");
         }
     }
 }
