@@ -18,8 +18,8 @@ public class ThreadPool {
 
     public synchronized void launch() {
         //genera una tarea, las cuales vamos a implementar después. Por ahora, es un Object random
-        Object tarea = "random";
-        buffer.producir(tarea);
+        Runnable tarea = //la tarea
+        //buffer.producir(tarea);
         //el notify() para avisar a un posible worker consumidor de tareas bloqueado ya se da en el producir del buffer
     }
 }

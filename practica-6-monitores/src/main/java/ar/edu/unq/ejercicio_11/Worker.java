@@ -11,10 +11,10 @@ public class Worker extends Thread {
 
     @Override
     public void run() {
-//        Object x;
-//        for(int i=0; i<5; i++) {
-//            x = buffer.consumir();
-//            System.out.println(x);
-//        }
+        Runnable task;
+        while(true) {
+            task = (Runnable) buffer.consumir();
+            task.run(); //ejecutar la task en cuestión
+        }
     }
 }
