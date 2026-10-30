@@ -14,7 +14,11 @@ public class Worker extends Thread {
         Runnable task;
         while(true) {
             task = (Runnable) buffer.consumir();
-            task.run(); //ejecutar la task en cuestión
+            try {
+                task.run(); //ejecutar la task en cuestión
+            } catch(PoisonException error) {
+                //Cuando el hilo tiene que morir, simplemente muere. No es necesario que avise su muerte ni nada parecido.
+            }
         }
     }
 }
