@@ -2,11 +2,9 @@ package ar.edu.unq.ejercicio_11;
 
 import ar.edu.unq.ejercicio_8.Buffer_N_sol;
 
-import java.util.ArrayList;
-
 public class ThreadPool {
     Buffer_N_sol buffer; //buffer donde se van a cargar las tareas/tasks
-    int cantWorkers;
+    int cantWorkers; //la cantidad de threads Workers que se inicializan para atender las tareas que se envian.
 
     public ThreadPool(int bufferSize, int cantWorkers) {
         this.buffer = new Buffer_N_sol(bufferSize);
@@ -22,6 +20,7 @@ public class ThreadPool {
     Producimos cantWorkers veces la tarea PoisonPill, de modo que los cantWorkers workers la tomen, la ejecuten y finalicen su ejecución.
     No se va a poder dar que uno la tome dos veces, porque, al tomar una de estas, el Worker finaliza su ejecución y ya no toma más tareas.
     Por tanto, las cantWorkers PosionPills van a alcanzar para matar a todos los Workers que fueron iniciados.
+    De esta forma, terminamos el ciclo de vida de los Workers de forma controlada y no de forma abrupta.
      */
     public synchronized void launch(Runnable tarea) {
         buffer.producir(tarea);
