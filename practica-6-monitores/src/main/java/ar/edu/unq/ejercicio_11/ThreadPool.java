@@ -5,13 +5,21 @@ import ar.edu.unq.ejercicio_8.Buffer_N_sol;
 import java.util.ArrayList;
 
 public class ThreadPool {
-    Buffer_N_sol buffer;
-    ArrayList<Worker> workers = new ArrayList<Worker>();
+    Buffer_N_sol buffer; //buffer donde se van a cargar las tareas/tasks
+    //ArrayList<Worker> workers = new ArrayList<Worker>(); Creo que no hace falta guardarlos acá, ¿no? Simplemente los creo y ellos ya tienen el buffer
 
     public ThreadPool(int bufferSize, int cantWorkers) {
         buffer = new Buffer_N_sol(bufferSize);
         for(int i=0; i<cantWorkers; i++) {
-            workers.add(new Worker(buffer));
+            Worker worker = new Worker(buffer);
+            worker.start();
         }
+    }
+
+    public synchronized void launch() {
+        //genera una tarea, las cuales vamos a implementar después. Por ahora, es un Object random
+        Object tarea = "random";
+        buffer.producir(tarea);
+        //el notify() para avisar a un posible worker consumidor de tareas bloqueado ya se da en el producir del buffer
     }
 }
