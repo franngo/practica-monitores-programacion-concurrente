@@ -1,2 +1,2 @@
 # practica-monitores-programacion-concurrente
-Práctica 6 de monitores de la materia Programación Concurrente.
+Repositorio para la práctica 6 de monitores de la materia Programación Concurrente de la UNQ - 2026s2 
