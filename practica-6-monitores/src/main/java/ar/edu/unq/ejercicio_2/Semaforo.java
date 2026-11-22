@@ -8,7 +8,7 @@ public class Semaforo {
     }
 
     public synchronized void acquire() throws InterruptedException {
-        while(permisos < 1) {
+        while(!puedeAcquire()) {
             wait();
         }
         permisos--;
@@ -17,6 +17,10 @@ public class Semaforo {
     public synchronized void release() {
         permisos++;
         notify();
+    }
+
+    private boolean puedeAcquire() {
+        return permisos > 0;
     }
 }
 
