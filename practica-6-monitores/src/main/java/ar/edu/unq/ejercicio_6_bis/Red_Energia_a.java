@@ -39,5 +39,5 @@ public class Red_Energia_a {
 //En vez de guardar consumidores y productores, y hacer la resta para conocer la cantidad de productores ociosos, directamente lo que guardo son los productores ociosos,
 //y los incremento o decremento dependiendo de si alguien empieza o deja de producir o consumir.
 
-//al igual que en la primera versión, si bien puede haber tanto consumidores queriendo entrar como productores queriendo salir, ambos esperan exactamente la misma cosa,
-//pues ambos puede son iguales, por lo que podemos hacer notify en vez de notifyAll.
+//al igual que en la primera versión, si bien puede haber tanto consumidores queriendo entrar como productores queriendo salir, ambos esperan exactamente la misma cosa
+//(la guarda es la misma para ambos "puede"), por lo que podemos hacer notify en vez de notifyAll.
