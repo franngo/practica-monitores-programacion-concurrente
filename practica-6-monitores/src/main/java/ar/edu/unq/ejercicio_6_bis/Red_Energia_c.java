@@ -53,3 +53,5 @@ public class Red_Energia_c {
         return productores_ociosos < topeProductoresOciosos;
     }
 }
+
+//Trade-off: Los threads que quieren iniciar consumo puede sufrir starvation a cambio de haber implementado la prioridad para productores que quieren dejar de producir.
