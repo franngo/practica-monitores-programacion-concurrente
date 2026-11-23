@@ -48,3 +48,5 @@ public class Red_Energia_a {
 /*
 Según Pablo en clase: está bien asumir buena fe sobre los threads. Uno que hace inicioConsumo() no va a hacer después inicioProduccion() y viceversa. No nos preocupamos.
  */
+
+//ambos puede se podrían escribir exactamente igual.
