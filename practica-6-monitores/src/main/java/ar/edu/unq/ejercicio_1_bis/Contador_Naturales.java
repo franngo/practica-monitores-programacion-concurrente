@@ -19,3 +19,5 @@ public class Contador_Naturales {
         return n > 0;
     }
 }
+
+//No aporta nada respecto al original. Solo lo hice para practicar. BORRAR.

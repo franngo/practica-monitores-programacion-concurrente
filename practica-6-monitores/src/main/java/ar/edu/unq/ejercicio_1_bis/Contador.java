@@ -11,3 +11,5 @@ public class Contador {
         n--;
     }
 }
+
+//No aporta nada respecto al original. Solo lo hice para practicar. BORRAR.

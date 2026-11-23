@@ -15,3 +15,5 @@ public class Event {
         }
     }
 }
+
+//Solo cambia respecto al original que no uso una subtarea, pero es que esta versión, para este caso particular, me parece más clara.

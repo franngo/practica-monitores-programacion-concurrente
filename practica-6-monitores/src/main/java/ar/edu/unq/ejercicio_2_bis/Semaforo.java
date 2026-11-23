@@ -23,3 +23,5 @@ public class Semaforo {
         return releases > 0;
     }
 }
+
+//No aporta nada respecto al original. Solo lo hice para practicar. BORRAR.

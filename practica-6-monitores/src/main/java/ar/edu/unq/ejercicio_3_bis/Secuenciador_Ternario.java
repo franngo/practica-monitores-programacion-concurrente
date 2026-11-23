@@ -39,3 +39,5 @@ public class Secuenciador_Ternario {
         return numeroSecuencia == 2;
     }
 }
+
+//No aporta nada respecto al original. Solo lo hice para practicar. BORRAR.
