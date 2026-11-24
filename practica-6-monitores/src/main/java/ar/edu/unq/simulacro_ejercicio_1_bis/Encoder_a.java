@@ -20,6 +20,7 @@ public class Encoder_a {
         }
         rawFrames.add(frame);
         notifyAll();
+        //o también podría hacer la optimización if(canGet()) { notifyAll(); }, para no hacer el notifyAll si aún no hay P frames.
     }
 
     public synchronized List<Object> getPack() throws InterruptedException {
