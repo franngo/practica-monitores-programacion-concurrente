@@ -10,6 +10,7 @@ consumir.
 Además, como solo produjimos un dato, solo va a haber un consumidor que lo pueda aprovechar, por lo que levantar a todos los posibles consumidores dormidos no tendría
 sentido, pues solo el primero aprovecharía el dato y el resto se dormiría de nuevo, lo cual es poco eficiente.
  */
+//actualización 24/11/2026: Tienen que ser notifyAll o ROMPEN. Puede haber tanto consumidores como productores dormidos AL MISMO TIEMPO en ciertas líneas de ejecución.
 public class Buffer_N_sol {
     private Object[] buffer;
     private int primeraParaConsumir = 0;
@@ -31,7 +32,7 @@ public class Buffer_N_sol {
         Object aDevolver = buffer[primeraParaConsumir];
         //buffer[primeraParaConsumir] = null;
         primeraParaConsumir = next(primeraParaConsumir);
-        notify();
+        notifyAll();
         return aDevolver;
     }
 
@@ -45,7 +46,7 @@ public class Buffer_N_sol {
         }
         buffer[proximaLibre] = dato;
         proximaLibre = next(proximaLibre);
-        notify();
+        notifyAll();
     }
 
     private boolean puedeConsumir() {
