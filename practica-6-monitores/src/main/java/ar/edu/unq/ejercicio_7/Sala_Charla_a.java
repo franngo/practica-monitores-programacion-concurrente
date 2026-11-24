@@ -53,6 +53,8 @@ public class Sala_Charla_a {
     private boolean puedeInicioCharla() {
         return asistentes > 0;
     }
+
+    //imagino que se asume que los threads actuan con buena fe y ninguno va a hacer cosas sin sentido dentro de la lógica de negocios, como 2 inicioCharla() seguidos, x ej.
 }
 
 //En los tres casos donde hago notifyAll, hago notifyAll y no notify, pues pueden convivir threads bloqueados por 3 guardas distintas en el wait set, por lo que
