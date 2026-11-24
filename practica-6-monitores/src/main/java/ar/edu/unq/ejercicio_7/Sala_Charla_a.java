@@ -11,7 +11,7 @@ public class Sala_Charla_a {
     }
 
     public synchronized void entrarSala() throws InterruptedException {
-        while (!puedeentrarSala()) {
+        while (!puedeEntrarSala()) {
             wait();
         }
         asistentes++;
@@ -40,7 +40,7 @@ public class Sala_Charla_a {
 
     //La sala tiene una capacidad para N personas.
     //Si hay lugar, sı́ se puede entrar en la sala aunque la charla haya comenzado.
-    private boolean puedeentrarSala() {
+    private boolean puedeEntrarSala() {
         return asistentes < capacidadMaxima;
     }
 

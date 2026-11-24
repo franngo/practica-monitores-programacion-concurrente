@@ -12,7 +12,7 @@ public class Sala_Charla_b {
     }
 
     public synchronized void entrarSala(int numCharla) throws InterruptedException {
-        while (!puedeentrarSala(numCharla)) {
+        while (!puedeEntrarSala(numCharla)) {
             wait();
         }
         asistentes++;
@@ -42,7 +42,7 @@ public class Sala_Charla_b {
 
     //La sala tiene una capacidad para N personas.
     //Si hay lugar, sı́ se puede entrar en la sala aunque la charla haya comenzado.
-    private boolean puedeentrarSala(int numCharla) {
+    private boolean puedeEntrarSala(int numCharla) {
         return numCharlaActual == numCharla && asistentes < capacidadMaxima;
     }
 
@@ -65,3 +65,7 @@ public class Sala_Charla_b {
 
 //En los tres casos donde hago notifyAll, hago notifyAll y no notify, pues pueden convivir threads bloqueados por 3 guardas distintas en el wait set, por lo que
 //despertar al equivocado con un notify podría causar que uno que si podía continuar su ejecución no lo haga.
+
+/*OJO: El enunciado NO me pide esperar a que se vayan todos los que vinieron a ver la primera charla para empezar la segunda. Yo asumo que se pueden quedar a varias
+si quieren.
+ */
